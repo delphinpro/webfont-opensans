@@ -1,4 +1,4 @@
-@mixin addOpenSansFont($bower_components: '/bower_components', $weight: 400, $style: normal) {
+@mixin addOpenSansFont($weight: 400, $style: normal, $bower_components: '/bower_components', $name: 'Open Sans') {
     $filename: 'opensans';
     $weights: (
             300: light,
@@ -21,7 +21,7 @@
         }
 
         @font-face {
-            font-family: 'Open Sans';
+            font-family: $name;
             src: url('#{$url}/#{$filename}.eot');
             src: url('#{$url}/#{$filename}.eot?#iefix') format('embedded-opentype'),
             url('#{$url}/#{$filename}.woff2') format('woff2'),
