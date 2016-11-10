@@ -1,0 +1,36 @@
+@mixin addOpenSansFont($bower_components: '/bower_components', $weight: 400, $style: normal) {
+    $filename: 'opensans';
+    $weights: (
+            300: light,
+            400: regular,
+            600: semibold,
+            700: bold,
+            800: extrabold
+    );
+    $weightName: regular;
+    $url: '#{$bower_components}/webfont-opensans/webfont';
+    @if map-has-key($weights, $weight) {
+        $weightName: map-get($weights, $weight);
+        $filename: '#{$filename}_#{$weight}-#{$weightName}';
+
+        @if $style == italic or $style == i {
+            $filename: '#{$filename}-italic';
+            $style: italic;
+        } @else {
+            $style: normal;
+        }
+
+        @font-face {
+            font-family: 'Open Sans';
+            src: url('#{$url}/#{$filename}.eot');
+            src: url('#{$url}/#{$filename}.eot?#iefix') format('embedded-opentype'),
+            url('#{$url}/#{$filename}.woff2') format('woff2'),
+            url('#{$url}/#{$filename}.woff') format('woff'),
+            url('#{$url}/#{$filename}.ttf') format('truetype');
+            font-weight: $weight;
+            font-style: $style;
+        }
+    } @else {
+        @warn 'Not found #{$filename}_#{$weight}';
+    }
+}
